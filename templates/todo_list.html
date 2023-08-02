@@ -1,0 +1,33 @@
+<!-- todo_list.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+     <link rel="stylesheet"type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>Todo List</h1>
+
+    <ul>
+        {% for todo in todos %}
+        <li>
+            <strong>{{ todo.title }}</strong>
+            {% if todo.completed %}
+            <span style="color: green;">(Completed)</span>
+            {% endif %}
+            <br>
+            {{ todo.description }}
+            <br>
+            <a href="{% url 'edit_todo' todo.id %}">Edit</a> |
+            <a href="{% url 'delete_todo' todo.id %}">Delete</a>
+        </li>
+        {% empty %}
+        <li>No todo items yet.</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <a href="{% url 'add_todo' %}">Add New Todo</a>
+</body>
+</html>

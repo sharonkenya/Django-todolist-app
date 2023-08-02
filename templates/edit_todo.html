@@ -1,0 +1,21 @@
+<!-- edit_todo.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Todo Item</title>
+     <link rel="stylesheet"type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>Edit Todo Item</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <br>
+    <a href="{% url 'todo_list' %}">Cancel</a>
+</body>
+</html>
